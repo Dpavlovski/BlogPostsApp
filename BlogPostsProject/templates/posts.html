@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+</head>
+<body>
+<nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">BlogPosts</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="{% url 'get_posts' %}">Posts</a></li>
+                <li><a href="{% url 'add_post' %}">Add Post</a></li>
+                <li><a href="{% url 'get_user_profile' %}">User Profile</a></li>
+                <li><a href="{% url 'get_blocked_users' %}">Blocked Users</a></li>
+            </ul>
+        </div>
+    </nav>
+<div class="container">
+  <h2>All Posts</h2>
+{% for blog in blogs %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4>{{ blog.title }}</h4>
+        </div>
+        <div class="panel-body">
+            <p>{{ blog.content }}</p>
+        </div>
+        <div class="panel-body">
+            <p><strong>Author: </strong>{{ blog.author.name }}</p>
+        </div>
+    </div>
+{% empty %}
+    <p>No posts found.</p>
+{% endfor %}
+</div>
+</body>
+</html>
